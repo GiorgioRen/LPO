@@ -1,0 +1,2 @@
+// Syntax error on line 2: Expecting IDENT, found NUM('0')
+var 0=1
