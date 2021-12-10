@@ -11,13 +11,18 @@ public class Rectangle implements Shape {
 
 	private final Point center = new Point();
 
+	private static double requirePositive(double size) {
+		if (size <= 0)
+			throw new IllegalArgumentException();
+		return size;
+	}
+
 	/*
 	 * Rettangolo con centro sull'origine degli assi
 	 */
 	private Rectangle(double width, double height) {
-		// completare
-		this.width = width;
-		this.height = height;
+		this.width = Rectangle.requirePositive(width);
+		this.height = Rectangle.requirePositive(height);
 	}
 
 	private Rectangle(double width, double height, Point center) {
