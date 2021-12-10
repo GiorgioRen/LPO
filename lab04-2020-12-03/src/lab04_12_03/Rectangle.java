@@ -26,9 +26,7 @@ public class Rectangle implements Shape {
 	}
 
 	private Rectangle(double width, double height, Point center) {
-		// completare
-		this.width = width;
-		this.height = height;
+		this(width, height);
 		this.center.move(center.getX(), center.getY());
 	}
 
@@ -42,7 +40,6 @@ public class Rectangle implements Shape {
 	 * Factory method
 	 */
 	public static Rectangle ofWidthHeight(double width, double height) {
-		// completare
 		return new Rectangle(width, height);
 	}
 
@@ -50,17 +47,14 @@ public class Rectangle implements Shape {
 	 * Factory method
 	 */
 	public static Rectangle ofWidthHeightCenter(double width, double height, Point center) {
-		// completare
 		return new Rectangle(width, height, center);
 	}
 
 	public void move(double dx, double dy) {
-		// completare
-		this.center.move(dx-this.center.getX(), dy-this.center.getY());
+		this.center.move(dx, dy);
 	}
 
 	public void scale(double factor) {
-		// completare
 		if (factor > 0) {
 			this.height = (this.height*factor);
 			this.width = (this.width*factor);
@@ -71,17 +65,14 @@ public class Rectangle implements Shape {
 	}
 
 	public Point getCenter() {
-		// completare
 		return this.center;
 	}
 
 	public double perimeter() {
-		// completare
-		return ((this.width*2)+(this.height*2));
+		return 2 * (this.width + this.height);
 	}
 
 	public double area() {
-		// completare
-		return (this.width*this.height);
+		return this.width * this.height;
 	}
 }
