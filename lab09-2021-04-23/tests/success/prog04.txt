@@ -1,0 +1,8 @@
+// ProgClass(MoreStmt(VarStmt(VarIdent(p1),PairLit(IntLiteral(1),BoolLiteral(true))),MoreStmt(VarStmt(VarIdent(p2),PairLit(BoolLiteral(false),IntLiteral(2))),MoreStmt(VarStmt(VarIdent(p),PairLit(VarIdent(p1),VarIdent(p2))),MoreStmt(PrintStmt(And(Snd(Fst(VarIdent(p))),BoolLiteral(true))),SingleStmt(PrintStmt(Mul(Sign(Snd(Snd(VarIdent(p)))),Sign(IntLiteral(3))))))))))
+
+var p1=<<1,true>>;
+var p2=<<false,2>>;
+var p=<<p1,p2>>;
+print snd fst p&&true;
+print - snd snd p * -3
+

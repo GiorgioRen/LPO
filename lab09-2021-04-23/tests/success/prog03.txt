@@ -1,0 +1,12 @@
+// ProgClass(MoreStmt(VarStmt(VarIdent(b1),BoolLiteral(true)),MoreStmt(VarStmt(VarIdent(b2),BoolLiteral(false)),MoreStmt(IfStmt(And(VarIdent(b1),Not(VarIdent(b2))),Block(SingleStmt(PrintStmt(IntLiteral(0)))),null),SingleStmt(IfStmt(Not(And(VarIdent(b1),VarIdent(b2))),Block(MoreStmt(VarStmt(VarIdent(x),IntLiteral(0)),SingleStmt(PrintStmt(VarIdent(x))))),Block(MoreStmt(VarStmt(VarIdent(x),IntLiteral(1)),SingleStmt(PrintStmt(VarIdent(x)))))))))))
+
+var b1=true; var b2=false;
+if(b1&&!b2){
+	print 0
+};
+if(!(b1&&b2)){
+	var x=0;print(x)
+}
+else {
+     var x=1;print(x)
+}
