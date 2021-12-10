@@ -6,21 +6,24 @@ public class Circle implements Shape {
 	private double radius = Circle.defaultSize;
 	private final Point center = new Point();
 
+	private static double requirePositive(double size) {
+		if (size <= 0)
+			throw new IllegalArgumentException();
+		return size;
+	}
+
 	/*
 	 * Cerchio con centro sull'origine degli assi
-	 */    
+	 */
 	private Circle(double radius) {
-		// completare
-		this.radius = radius;
-		this.center.move(0.0, 0.0);
+		this.radius = Circle.requirePositive(radius);
 	}
 
 	private Circle(double radius, Point center) {
-		// completare
-		this.radius = radius;
+		this(radius);
 		this.center.move(center.getX(), center.getY());
 	}
-    
+
 	/*
 	 * Cerchio con dimensioni di default e centro sull'origine degli assi
 	 */
@@ -31,7 +34,6 @@ public class Circle implements Shape {
 	 * Factory method
 	 */
 	public static Circle ofRadius(double radius) {
-		// completare
 		return new Circle(radius);
 	}
 
@@ -39,33 +41,26 @@ public class Circle implements Shape {
 	 * Factory method
 	 */
 	public static Circle ofRadiusCenter(double radius, Point center) {
-		// completare
 		return new Circle(radius, center);
 	}
 	
 	public void move(double dx, double dy) {
-		// completare
-		this.center.move(dx-this.center.getX(), dy-this.center.getY());
+		this.center.move(dx, dy);
 	}
 
 	public void scale(double factor) {		
-		// completare
-		if (factor > 0) this.radius = (this.radius*factor);
-		else if (factor < 0) this.radius = (this.radius/factor);
+		this.radius *= Circle.requirePositive(factor);
 	}
 
 	public Point getCenter() {
-		// completare
-		return this.center;
+		return new Point(center);
 	}
 
 	public double perimeter() {
-		// completare
-		return (Math.PI*this.radius*2);
+		return Math.PI * this.radius * 2;
 	}
 
 	public double area() {
-		// completare
-		return (Math.PI*this.radius*this.radius);
+		return Math.PI * this.radius * this.radius;
 	}
 }
