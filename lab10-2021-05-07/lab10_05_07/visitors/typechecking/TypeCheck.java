@@ -33,27 +33,39 @@ public class TypeCheck implements Visitor<Type> {
 
 	@Override
 	public Type visitAssignStmt(VarIdent ident, Exp exp) {
-	    // completare
+		Type found = env.lookup(ident);
+		found.checkEqual(exp.accept(this));
+		return null;
 	}
 
 	@Override
 	public Type visitPrintStmt(Exp exp) {
-	    // completare
+		exp.accept(this);
+		return null;
 	}
 
 	@Override
 	public Type visitVarStmt(VarIdent ident, Exp exp) {
-	    // completare
+		env.dec(ident, exp.accept(this));
+		return null;
 	}
 
 	@Override
 	public Type visitIfStmt(Exp exp, Block thenBlock, Block elseBlock) {
-	    // completare
+		BOOL.checkEqual(exp.accept(this));
+		thenBlock.accept(this);
+		if (elseBlock == null)
+			return null;
+		elseBlock.accept(this);
+		return null;
 	}
 
 	@Override
 	public Type visitBlock(StmtSeq stmtSeq) {
-	    // completare
+		env.enterScope();
+		stmtSeq.accept(this);
+		env.exitScope();
+		return null;
 	}
 
 	// static semantics for sequences of statements
@@ -61,74 +73,81 @@ public class TypeCheck implements Visitor<Type> {
 
 	@Override
 	public Type visitSingleStmt(Stmt stmt) {
-	    // completare
+		stmt.accept(this);
+		return null;
 	}
 
 	@Override
 	public Type visitMoreStmt(Stmt first, StmtSeq rest) {
-	    // completare
+		first.accept(this);
+		rest.accept(this);
+		return null;
 	}
 
 	// static semantics of expressions; a type is returned by the visitor
 
 	@Override
 	public PrimType visitAdd(Exp left, Exp right) {
-	    // completare
+		checkBinOp(left, right, INT);
+		return INT;
 	}
 
 	@Override
 	public PrimType visitIntLiteral(int value) {
-	    // completare
+		return INT;
 	}
 
 	@Override
 	public PrimType visitMul(Exp left, Exp right) {
-	    // completare
+		checkBinOp(left, right, INT);
+		return INT;
 	}
 
 	@Override
 	public Type visitSign(Exp exp) {
-	    // completare
+		return INT.checkEqual(exp.accept(this));
 	}
 
 	@Override
 	public Type visitVarIdent(VarIdent id) {
-	    // completare
+		return env.lookup(id);
 	}
 
 	@Override
 	public Type visitNot(Exp exp) {
-	    // completare
+		return BOOL.checkEqual(exp.accept(this));
 	}
 
 	@Override
 	public PrimType visitAnd(Exp left, Exp right) {
-	    // completare
+		checkBinOp(left, right, BOOL);
+		return BOOL;
 	}
 
 	@Override
 	public PrimType visitBoolLiteral(boolean value) {
-	    // completare
+		return BOOL;
 	}
 
 	@Override
 	public PrimType visitEq(Exp left, Exp right) {
-	    // completare
+		left.accept(this).checkEqual(right.accept(this));
+		return BOOL;
 	}
 
 	@Override
 	public ProdType visitPairLit(Exp left, Exp right) {
-	    // completare
+		return new ProdType(left.accept(this), right.accept(this));
 	}
 
 	@Override
 	public Type visitFst(Exp exp) {
-	    // completare
+		return exp.accept(this).getFstProdType();
 	}
 
 	@Override
 	public Type visitSnd(Exp exp) {
-	    // completare
+		return exp.accept(this).getSndProdType();
 	}
 
 }
