@@ -1,7 +1,7 @@
 # Progetto finale LPO a.a. 2020-2021
 
-> LPO_interpreter: interpreter del linguaggio `L++` definito a partire dall'[ultimo laboratorio](lab11-2021-05-14).
-> Leggi la [specifica](progetto-finale/specifica.pdf) per maggiori informazioni.
+> LPO_interpreter: interpreter del linguaggio `L++` definito a partire dall'[ultimo laboratorio](../lab11-2021-05-14).
+> Leggi la [specifica](specifica.pdf) per maggiori informazioni.
 
 ## Contenuto del repository
 
