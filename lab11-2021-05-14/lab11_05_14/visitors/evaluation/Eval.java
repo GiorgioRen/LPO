@@ -44,27 +44,37 @@ public class Eval implements Visitor<Value> {
 
 	@Override
 	public Value visitAssignStmt(VarIdent ident, Exp exp) {
-	    // completare
+		env.update(ident, ext.accept(this));
+		return null;
 	}
 
 	@Override
 	public Value visitPrintStmt(Exp exp) {
-	    // completare
+		printWriter.println(exp.accept(this));
+		return null;
 	}
 
 	@Override
 	public Value visitVarStmt(VarIdent ident, Exp exp) {
-	    // completare
+		env.dec(ident, exp.accept(this));
+		return null;
 	}
 
 	@Override
 	public Value visitIfStmt(Exp exp, Block thenBlock, Block elseBlock) {
-	    // completare
+		if (exp.accept(this).toBool())
+			thenBlock.accept(this);
+		else if (elseBlock != null)
+			elseBlock.accept(this);
+		return null;
 	}
 
 	@Override
 	public Value visitBlock(StmtSeq stmtSeq) {
-	    // completare
+		env.enterScope();
+		stmtSeq.accept(this);
+		env.exitScope();
+		return null;
 	}
 
 	// dynamic semantics for sequences of statements
@@ -72,74 +82,77 @@ public class Eval implements Visitor<Value> {
 
 	@Override
 	public Value visitSingleStmt(Stmt stmt) {
-	    // completare
+		stmt.accept(this);
+		return null;
 	}
 
 	@Override
 	public Value visitMoreStmt(Stmt first, StmtSeq rest) {
-	    // completare
+		first.accept(this);
+		rest.accept(this);
+		return null;
 	}
 
 	// dynamic semantics of expressions; a value is returned by the visitor
 
 	@Override
 	public IntValue visitAdd(Exp left, Exp right) {
-	    // completare
+		return new IntValue(left.accept(this).toInt() + right.accept(this).toInt());
 	}
 
 	@Override
 	public IntValue visitIntLiteral(int value) {
-	    // completare
+		return new IntValue(value);
 	}
 
 	@Override
 	public IntValue visitMul(Exp left, Exp right) {
-	    // completare
+		return new IntValue(left.accept(this).toInt() * right.accept(this).toInt());
 	}
 
 	@Override
 	public IntValue visitSign(Exp exp) {
-	    // completare
+		return new IntValue(-exp.accept(this).toInt());
 	}
 
 	@Override
 	public Value visitVarIdent(VarIdent id) {
-	    // completare
+		return env.lookup(id);
 	}
 
 	@Override
 	public BoolValue visitNot(Exp exp) {
-	    // completare
+		return new BoolValue(!exp.accept(this).toBool());
 	}
 
 	@Override
 	public BoolValue visitAnd(Exp left, Exp right) {
-	    // completare
+		return new BoolValue(left.accept(this).toBool() && right.accept(this).toBool());
 	}
 
 	@Override
 	public BoolValue visitBoolLiteral(boolean value) {
-	    // completare
+		return new BoolValue(value);
 	}
 
 	@Override
 	public BoolValue visitEq(Exp left, Exp right) {
-	    // completare
+		return new BoolValue(left.accept(this).equals(right.accept(this)));
 	}
 
 	@Override
 	public PairValue visitPairLit(Exp left, Exp right) {
-	    // completare
+		return new PairValue(left.accept(this), right.accept(this));
 	}
 
 	@Override
 	public Value visitFst(Exp exp) {
-	    // completare
+		return exp.accept(this).toProd().getFstVal();
 	}
 
 	@Override
 	public Value visitSnd(Exp exp) {
-	    // completare
+		return exp.accept(this).toProd().getSndVal();
 	}
 
 }
