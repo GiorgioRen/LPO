@@ -1,0 +1,2 @@
+// Syntax error: on line 1: Expecting RANGE_SEP, found STMT_SEP(';')
+print [1;2]

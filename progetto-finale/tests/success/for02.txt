@@ -1,0 +1,7 @@
+// prints true 3 times 
+var x=true;
+for x in [1:3]{
+   var x=x!=0;
+   print x
+};
+print x

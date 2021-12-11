@@ -1,0 +1,2 @@
+// prints true with option -ntc
+print [1:2]!=1

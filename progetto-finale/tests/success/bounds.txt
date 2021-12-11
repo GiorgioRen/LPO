@@ -1,0 +1,3 @@
+// prints true
+var b=bounds [3*2:-1];
+print fst b==6&&snd b==-1

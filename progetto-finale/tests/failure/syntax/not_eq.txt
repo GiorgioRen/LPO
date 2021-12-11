@@ -1,0 +1,2 @@
+// Syntax error: on line 1: Unexpected token NOT_EQ('!=')
+print !=2

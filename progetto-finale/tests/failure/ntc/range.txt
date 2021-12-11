@@ -1,0 +1,2 @@
+// Dynamic error: Expecting an integer
+print [1:true]

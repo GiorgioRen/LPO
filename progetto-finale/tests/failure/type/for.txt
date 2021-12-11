@@ -1,0 +1,2 @@
+// Static error: project.environments.EnvironmentException: Undeclared variable y
+for x in [1:2]{print y;var y=0}

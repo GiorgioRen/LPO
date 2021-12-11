@@ -1,0 +1,2 @@
+// Syntax error: on line 1: Expecting OPEN_BLOCK, found PRINT('print')
+for x in [1:2] print x

@@ -1,0 +1,16 @@
+// prints true 8 times 
+var r=[1:4];
+var b=bounds r;
+var c=fst b;
+for i in r{
+    print i==c;
+    c=c+1
+};
+print c==snd b;
+c=c+-1; 
+for i in [snd b+-1:fst b+-1] {
+    print i==c;
+    c=c+-1
+};
+print c==fst b+-1
+

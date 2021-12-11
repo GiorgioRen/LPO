@@ -1,0 +1,2 @@
+// Dynamic error: Expecting a boolean
+print !fst bounds [1:2]
